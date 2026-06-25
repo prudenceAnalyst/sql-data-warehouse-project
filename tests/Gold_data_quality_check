@@ -18,6 +18,7 @@ Usage Notes:
 -- ====================================================================
 -- Check for Uniqueness of Customer Key in gold.dim_patients
 -- Expectation: No results 
+
 SELECT 
     patient_id,
     COUNT(*) AS duplicate_count
@@ -26,6 +27,7 @@ GROUP BY  patient_id
 HAVING COUNT(*) > 1;
 
 -- Check the data model connectivity between fact and dimensions
+
 SELECT * 
 FROM gold.dim_patients p
 LEFT JOIN gold.fact_bills b
@@ -63,8 +65,8 @@ SELECT DISTINCT
     quantity,
     unity_price,
     total_price,
-	  patient_cost,
-	  insurance_cost
+	patient_cost,
+	insurance_cost
 FROM gold.fact_medicaments
 WHERE total_price != quantity * unity_price
    OR total_price IS NULL 
